@@ -661,15 +661,15 @@ run;
 %append;
 
 /* Explore Target Variable, loan_status */
-proc freq data=append.leanding_append1;
-	tables loan_status;
+proc freq data=append.lending_append1;
+	tables default;
 run;
 
 /* Transform loan_status variable into binary categorical variable */
-data append.leading_append1;
+data append.lending_append1;
 	set lending_append;
 	if loan_status in ('Charged Off','Late (31-120 days)','Default') then default=0 ;
-	if loan_status in = 'Fully Paid' then default=1 ;
+	if loan_status = 'Fully Paid' then default=1 ;
 	drop loan_status;
 run; 
 
